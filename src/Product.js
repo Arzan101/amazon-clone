@@ -1,7 +1,7 @@
 import React from 'react'
 import './Product.css'
 
-function Product({id,title,price,image,txt})
+function Product({id ,title,price,image})
  {
     return (
     <div className="product">
@@ -13,7 +13,6 @@ function Product({id,title,price,image,txt})
         <p className="product__price">
         <bold>₹</bold>
         <strong>{price}</strong>
-        <p>{txt}</p>
         </p>
             
          <img className="product__img" src={image} alt="" /> 
