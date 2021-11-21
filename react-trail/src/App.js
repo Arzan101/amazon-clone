@@ -2,16 +2,20 @@ import React,{useState} from 'react';
 
 
 function App(){
- const state = useState();
- console.log(state);
+ const [count,setCount] = useState(0);
+//  console.log(state);
 
-function cart(){
-  //count++
+function addtocart(){
+  setCount(count +1);
+}
+function removefromcart(){
+  setCount(count -1);
 }
 return(
     <div>
-      <h1>0</h1>
-    <button onClick={cart}>Add</button>
+      <h1>{count}</h1>
+    <button onClick={addtocart}>Add</button>
+    <button onClick={removefromcart}>Remove</button>
     </div>
     // document.getElementById("root")
   );
