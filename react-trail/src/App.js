@@ -1,10 +1,16 @@
 import React from 'react';
-import UseReducer from './useReducer.js';
 
+
+function StateChange(){
+
+    document.getElementById('root').style.textDecoration('line-through');
+ 
+}
 function App() {
   return (
     <div>
-      <UseReducer />
+     <p>Hello</p>
+     <button onClick={StateChange}>Submit</button>
     </div>
   )
 }
