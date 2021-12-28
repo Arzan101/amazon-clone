@@ -10,6 +10,9 @@ function App() {
    <Router>
     <div className="app">
      <Switch>
+     <Route path="/login">
+     <h1>Login Page</h1>
+      </Route>
       <Route path="/checkout">
          <Header />
          <Checkout/>
