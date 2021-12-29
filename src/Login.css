@@ -2,6 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: white;
     align-items: center;
 }
 
@@ -12,4 +13,17 @@
  object-fit: contain;
  margin-left: auto;
  margin-right: auto;
+}
+.login__container{
+    width: 300px;
+    height:fit-content ;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border:1px solid black;
+    border-radius: 5px;
+}
+.login__container h1{
+    font-weight: 500;
+    margin-bottom: 20px;
 }
