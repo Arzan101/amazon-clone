@@ -6,7 +6,7 @@ function Login() {
     return (
         <div className='login'>
         <Link to = "/">
-        <img className = "header__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Logo"/>  
+        <img className = "login__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Logo"/>  
         </Link> 
             
         </div>
