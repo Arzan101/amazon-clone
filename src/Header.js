@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {Link} from "react-router-dom"
 import { useStateValue } from './StateProvider';
+import Login from './Login';
 function Header() {
     const [{cart},dispatch] = useStateValue();
     return (
@@ -27,7 +28,7 @@ function Header() {
         <span className="header__optionlineOne">
                  Hello
         </span>
-        <span className="header__optionlineTwo">
+        <span className="header__optionlineTwo" >
                  SignIn
         </span>
 
