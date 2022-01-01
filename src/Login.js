@@ -7,6 +7,16 @@ function Login() {
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
 
+    const signIn= e=>{
+
+    }
+
+    const register = e=>{
+        
+    }
+
+
+
 
     return (
         <div className='login'>
@@ -20,12 +30,12 @@ function Login() {
         <input Type="text" value={email} onChange={e=>{setEmail(e.target.value)}} />
         <h5>Password</h5>
         <input Type="password" value={password} onChange={e=>{setPassword(e.target.value)}}/>
-        <button className='login--signButton'>Sign In</button>
+        <button type='submit' onClick={signIn} className='login--signButton'>Sign In</button>
         </form>
         <p>
         By creating an account or logging in, you agree to Amazon’s Conditions of Use and Privacy Policy.
         </p>
-        <button className='login--registerButton'>Create your Amazon Account</button>
+        <button type='submit' onClick={register} className='login--registerButton'>Create your Amazon Account</button>
         </div>    
         </div>
     )
