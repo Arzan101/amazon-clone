@@ -4,8 +4,8 @@ import './Login.css'
 
 function Login() {
 
-    const {email,setEmail}=useState('')
-    const {password,setPassword }=useState('')
+    const [email, setEmail]=useState('')
+    const [password, setPassword]=useState('')
 
 
     return (
@@ -17,9 +17,9 @@ function Login() {
         <h1>Sign-In</h1>
         <form>
         <h5>E-mail</h5>
-        <input Type="text"/>
+        <input Type="text" value={email} onChange={e=>{setEmail(e.target.value)}} />
         <h5>Password</h5>
-        <input Type="password"/>
+        <input Type="password" value={password} onChange={e=>{setPassword(e.target.value)}}/>
         <button className='login--signButton'>Sign In</button>
         </form>
         <p>
