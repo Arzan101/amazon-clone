@@ -8,11 +8,12 @@ function Login() {
     const [password, setPassword]=useState('')
 
     const signIn= e=>{
+        e.preventDefault();
 
     }
 
     const register = e=>{
-        
+        e.preventDefault();
     }
 
 
