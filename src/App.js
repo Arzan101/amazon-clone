@@ -6,9 +6,10 @@ import Checkout from './Checkout'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './Login';
 import { auth } from './firebase';
+import { useStateValue } from './StateProvider';
 
 function App() {
-  
+  const [{}, dispatch] = useStateValue();
   useEffect(() =>{
     //will only run once when app component is loaded.
     auth.onAuthStateChanged(
