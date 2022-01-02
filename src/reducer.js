@@ -31,6 +31,12 @@ const reducer = (state, action) => {
                 cart: newCart
             }
 
+            case "Set_User":
+                return{
+                    ...state,
+                    user:action.user
+                }
+
 
         default:
             return state;

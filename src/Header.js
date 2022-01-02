@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 import { useStateValue } from './StateProvider';
 import Login from './Login';
 function Header() {
-    const [{cart},dispatch] = useStateValue();
+    const [{cart,user},dispatch] = useStateValue();
     return (
 <div className= 'header'>
 

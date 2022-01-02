@@ -16,10 +16,20 @@ function App() {
         console.log('THE USER IS :', authUser);
      
       if (authUser){
-        //user just logged in / user was logged in
+        //user just logedIn/user was logedIn
+        dispatchEvent({
+          type:'Set_User',
+          user:authUser
+
+        })
       }
       else{
-        //user logged out
+          //user logged out
+        dispatchEvent({
+          type:'Set_User',
+          user:null
+
+        })
       }
     })
   }, [])
