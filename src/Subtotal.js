@@ -4,8 +4,10 @@ import { useStateValue } from "./StateProvider";
 
 import CurrencyFormat from "react-currency-format";
 import { getCartTotal } from "./reducer";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Subtotal() {
+  const history =useHistory()
   const [{cart}, dispatch] = useStateValue();  
 
   return (
