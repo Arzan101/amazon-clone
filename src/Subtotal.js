@@ -27,7 +27,7 @@ function Subtotal() {
          thousandSeparator = {true}
          prefix = {"₹"}
       />      
-      <button>Proceed to Buy</button>
+      <button onClick={e=> history.push("/payment")}>Proceed to Buy</button>
     </div>
   );
 }
