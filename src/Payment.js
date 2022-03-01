@@ -36,6 +36,11 @@ function Payment() {
          </div>
            {/*Payment gateway*/}
          <div className='payment--section'>
+          <h3>Payment Methods</h3>
+           <div className='payment--details'>
+            {/*Stripe secret code*/}
+           
+           </div>
 
          </div>
 
