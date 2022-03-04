@@ -1,3 +1,4 @@
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react'
 import CheckoutProduct from './Checkoutproduct';
 import "./Payment.css"
@@ -5,6 +6,18 @@ import { useStateValue } from './StateProvider';
 
 function Payment() {
     const [{cart,user},dispatch] = useStateValue();
+
+    const stripe= useStripe();
+    const elements = useElements();
+
+    const handleSubmit= e=>{
+
+    }
+
+    const handleChange =e=>{
+      
+    }
+
 
   return (
     <div className='payment'>
@@ -43,6 +56,11 @@ function Payment() {
           <h3>Payment Methods</h3>
            <div className='payment--details'>
             {/*Stripe secret code*/}
+            <form onSubmit={handleSubmit}>
+              <CardElement onChange={handleChange}/>
+
+            
+            </form>
            
            </div>
 
