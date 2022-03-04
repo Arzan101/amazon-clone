@@ -1,7 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React from 'react'
+import React, { useState } from 'react'
+import CurrencyFormat from 'react-currency-format';
 import CheckoutProduct from './Checkoutproduct';
 import "./Payment.css"
+import { getCartTotal } from './reducer';
 import { useStateValue } from './StateProvider';
 
 function Payment() {
@@ -10,12 +12,18 @@ function Payment() {
     const stripe= useStripe();
     const elements = useElements();
 
+    const [error,setError]= useState(null);
+    const[disabled, setDisabled]= useState(true);
+    const[processing, setProcessing]=useState("");
+    const [succeeded, setSucceeded] =useState(false);
+
     const handleSubmit= e=>{
 
     }
 
-    const handleChange =e=>{
-      
+    const handleChange =event=>{
+      setDisabled(event.empty);
+      setError(event.error ? event.error.message :"");
     }
 
 
@@ -53,12 +61,33 @@ function Payment() {
          </div>
            {/*Payment gateway*/}
          <div className='payment--section'>
-          <h3>Payment Methods</h3>
+          <h3>Payment Method :</h3>
            <div className='payment--details'>
             {/*Stripe secret code*/}
             <form onSubmit={handleSubmit}>
               <CardElement onChange={handleChange}/>
+               <div className='payment--priceContainer'>
+               <CurrencyFormat 
+               renderText = {(value) => (
+                <div>
+                      <p>Subtotal ({cart.length} items):<strong>{value}</strong> </p>
+                      <small className="subtotal--gift">
+                          <input type="checkbox" /> This order contains a gift
+                      </small>
+                </div>
+               )}
+               decimalScale = {2}
+               value = {getCartTotal(cart)}
+               displayType = {"text"}
+               thousandSeparator = {true}
+               prefix = {"₹"}
+            />     
+            <button disabled = {processing || disabled || succeeded}>
+             <span>{processing ? <p>processing</p>: "Buy now"}</span>
+            </button>
+               </div>
 
+               
             
             </form>
            
