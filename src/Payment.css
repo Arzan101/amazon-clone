@@ -14,6 +14,9 @@
     margin: 0 20px;
 
 }
-.payment--address{
+.payment--title{
     flex:0.2;
+}
+.payment--address, .payment--items{
+    flex:0.8;
 }

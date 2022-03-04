@@ -11,7 +11,9 @@ function Payment() {
        <div className='payment--container'>
        {/*delivery address*/}
          <div className='payment--section'>
+          <div className='payment--title'>
           <h3>Delivery Address:</h3>
+          </div>
           <div className='payment--address'>
             <p>{user?.email} </p>
             <p>flat 302, Hiranandani</p>
@@ -21,7 +23,7 @@ function Payment() {
          </div>
            {/*cart review*/}
          <div className='payment--section'>
-           <div className='project--title'>
+           <div className='payment--title'>
            <h3>Review your item in Cart :</h3>
            </div>  
             <div className='payment--items'>
