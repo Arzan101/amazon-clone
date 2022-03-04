@@ -21,7 +21,9 @@ function Payment() {
          </div>
            {/*cart review*/}
          <div className='payment--section'>
+           <div className='project--title'>
            <h3>Review your item in Cart :</h3>
+           </div>  
             <div className='payment--items'>
             {cart.map( item => (
                 <CheckoutProduct
