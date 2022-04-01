@@ -19,6 +19,7 @@ function Payment() {
 
     const handleSubmit= (event)=>{
       event.preventDefault();
+      setProcessing(true);
     };
 
     const handleChange =(event)=>{
