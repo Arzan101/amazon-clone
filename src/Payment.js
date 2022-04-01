@@ -17,11 +17,11 @@ function Payment() {
     const[processing, setProcessing]=useState("");
     const [succeeded, setSucceeded] =useState(false);
 
-    const handleSubmit= e=>{
+    const handleSubmit= (event)=>{
+      event.preventDefault();
+    };
 
-    }
-
-    const handleChange =event=>{
+    const handleChange =(event)=>{
       setDisabled(event.empty);
       setError(event.error ? event.error.message :"");
     }
@@ -85,7 +85,9 @@ function Payment() {
             <button disabled = {processing || disabled || succeeded}>
              <span>{processing ? <p>processing</p>: "Buy now"}</span>
             </button>
-               </div>
+          </div>
+               {/*error*/}
+               {error && <div>{error}</div>}
 
                
             
