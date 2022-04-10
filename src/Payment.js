@@ -1,5 +1,5 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import CheckoutProduct from './Checkoutproduct';
 import "./Payment.css"
@@ -17,11 +17,19 @@ function Payment() {
     const[processing, setProcessing]=useState("");
     const [succeeded, setSucceeded] =useState(false);
 
+    useEffect(()=>{
+      //generate the special stripe secret which allows to charge a customer
+      const getClientSecret= async()=>{
+
+      }
+      getClientSecret();
+    },[cart])
+
     const handleSubmit= async (event)=>{
       event.preventDefault();
       setProcessing(true);
       
-      const payload = await stripe()
+      //const payload = await stripe()
     };
 
     const handleChange =(event)=>{
