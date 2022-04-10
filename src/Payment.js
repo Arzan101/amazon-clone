@@ -17,11 +17,11 @@ function Payment() {
     const[processing, setProcessing]=useState("");
     const [succeeded, setSucceeded] =useState(false);
 
-    const handleSubmit= (event)=>{
+    const handleSubmit= async (event)=>{
       event.preventDefault();
       setProcessing(true);
       
-      
+      const payload = await stripe()
     };
 
     const handleChange =(event)=>{
