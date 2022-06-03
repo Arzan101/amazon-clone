@@ -20,7 +20,7 @@ function Payment() {
     useEffect(()=>{
       //generate the special stripe secret which allows to charge a customer
       const getClientSecret= async()=>{
-         const response = await axios;
+         const response = await axios();
       }
       getClientSecret();
     },[cart])
