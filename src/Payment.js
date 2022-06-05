@@ -1,4 +1,5 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import CheckoutProduct from './Checkoutproduct';
@@ -20,7 +21,10 @@ function Payment() {
     useEffect(()=>{
       //generate the special stripe secret which allows to charge a customer
       const getClientSecret= async()=>{
-         const response = await axios();
+         const response = await axios({
+           method: 'post',
+           url: `/payment/create?total=${getCartTotal(cart)* 100}`
+         });
       }
       getClientSecret();
     },[cart])
