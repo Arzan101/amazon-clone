@@ -17,6 +17,7 @@ function Payment() {
     const[disabled, setDisabled]= useState(true);
     const[processing, setProcessing]=useState("");
     const [succeeded, setSucceeded] =useState(false);
+    const[clientSecret,SetClientSecret]=useState(true);
 
     useEffect(()=>{
       //generate the special stripe secret which allows to charge a customer
@@ -25,6 +26,7 @@ function Payment() {
            method: 'post',
            url: `/payment/create?total=${getCartTotal(cart)* 100}`
          });
+         SetClientSecret(response.data.clientSecret)
       }
       getClientSecret();
     },[cart])
