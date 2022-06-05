@@ -35,7 +35,7 @@ function Payment() {
       event.preventDefault();
       setProcessing(true);
       
-      //const payload = await stripe()
+      const payload = await stripe.confirmCardPayment(clientSecret,)
     };
 
     const handleChange =(event)=>{
