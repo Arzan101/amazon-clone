@@ -1,3 +1,4 @@
+import { Card } from '@mui/material';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
@@ -35,7 +36,11 @@ function Payment() {
       event.preventDefault();
       setProcessing(true);
       
-      const payload = await stripe.confirmCardPayment(clientSecret,)
+      const payload = await stripe.confirmCardPayment(clientSecret,{
+        payment_method:{
+          card: elements.getElement(CardElement)
+        }
+      })
     };
 
     const handleChange =(event)=>{
