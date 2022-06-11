@@ -1,4 +1,9 @@
 const functions = require("firebase-functions");
-const express = require("express"); //npm i express
-const cors = require("cors"); //npm i cors
-const stripe = require("stripe") ("sk_test_51KZRkQSHV4CwkIjNKPpmd6J4r35VaJmniTLGWsvYKgsrKoYKkvwC5C3NpGPA5aF7nO8sZA85WOBBqlcLGfutCRGr00HEVbaxAU"); //npm i stripe 
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
