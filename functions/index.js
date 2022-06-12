@@ -34,5 +34,4 @@ exports.api = functions.https.onRequest(app);
 // - In terminal firebase emulators:start
 
 // -Endpoint
-
-// -http://localhost:4000
+// -http://localhost:5001/clone-a4bf9/us-central1/api
