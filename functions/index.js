@@ -21,6 +21,10 @@ app.post('/payment/create', async(request, response)=>{
     amount : total, // -Paise wali value mai dega rupee mai nhi
     currency:"inr",
    });
+
+   response.status(201).send({
+      clientSecret: paymentIntent.client-secret,
+   })
 })
 
 // -Listen Command
