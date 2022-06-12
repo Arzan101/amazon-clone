@@ -20,6 +20,7 @@ function Payment() {
     const[processing, setProcessing]=useState("");
     const [succeeded, setSucceeded] =useState(false);
     const[clientSecret,SetClientSecret]=useState(true);
+    const ayesi hi
 
     useEffect(()=>{
       //generate the special stripe secret which allows to charge a customer
