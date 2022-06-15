@@ -1,9 +1,10 @@
 import React from 'react'
+import './orders.css'
 
-function Orders() {
+function orders() {
   return (
-    <div>Order</div>
+    <div className='orders'></div>
   )
 }
 
-export default Orders;
+export default orders;
