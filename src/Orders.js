@@ -1,10 +1,10 @@
-import React from 'react'
-import './orders.css'
+import React from 'react';
+import './orders.css';
 
 function Orders() {
-  return (
-    <div className='orders'></div>
-  )
+  return <div className='orders'>
+    <h1>order page</h1>
+    </div>; 
 }
 
 export default Orders;
