@@ -126,3 +126,45 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2022-06-15T13:34:31.858Z] [worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: IDLE"}}
 [debug] [2022-06-15T13:34:31.859Z] [work-queue] {"queueLength":0,"workRunningCount":0}
 [debug] [2022-06-15T13:34:32.199Z] Functions emulator received unknown request at path /favicon.ico
+[debug] [2022-06-15T13:42:39.631Z] File E:\amazon\amazon-clone\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File E:\\amazon\\amazon-clone\\functions\\index.js changed, reloading triggers"}}
+[debug] [2022-06-15T13:42:40.713Z] [worker-pool] Shutting down IDLE worker (us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Shutting down IDLE worker (us-central1-api)"}}
+[debug] [2022-06-15T13:42:40.714Z] [worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: FINISHING {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: FINISHING"}}
+[debug] [2022-06-15T13:42:41.204Z] Validating nodejs source
+[debug] [2022-06-15T13:43:21.379Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "stripe": "^9.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-06-15T13:43:21.380Z] Building nodejs source
+[debug] [2022-06-15T13:43:21.380Z] Analyzing nodejs backend spec
+[debug] [2022-06-15T13:43:21.382Z] [worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: exited"}}
+[debug] [2022-06-15T13:43:21.382Z] [worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: FINISHED {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-89813c0b-1a84-489c-89cf-9da836b34139]: FINISHED"}}
+[debug] [2022-06-15T13:43:21.383Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-06-15T13:43:27.456Z] Serving at port 9005
+
+[debug] [2022-06-15T13:43:28.458Z] Got response from /__/functions.yaml {"endpoints":{"api":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-06-15T13:43:28.473Z] shutdown requested via /__/quitquitquit
+
+[debug] [2022-06-15T13:50:48.560Z] Received signal SIGHUP 1
