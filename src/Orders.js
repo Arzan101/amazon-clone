@@ -1,5 +1,5 @@
 import React from 'react';
-// import './orders.css';
+// import './Orders.css';
 
 function Orders() {
   return <div className='orders'>
