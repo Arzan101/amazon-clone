@@ -1,6 +1,7 @@
 import { Card } from '@mui/material';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import {db} from "./firebase"
 import React, { useEffect, useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import { useHistory } from 'react-router-dom';
@@ -43,9 +44,21 @@ function Payment() {
       
       const payload = await stripe.confirmCardPayment(clientSecret,{
         payment_method:{
-          card: elements.getElement(CardElement)
-        }
+          card: elements.getElement(CardElement),
+        },
       }).then( ({paymentIntent}) =>{
+        //paymentIntent = payment confirmation
+
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            cart: cart,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false)
