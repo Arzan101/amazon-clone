@@ -48,7 +48,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-               <Route path="/orders">
+               <Route path="/Orders">
                 <Header />
                 <Orders />
               </Route>
