@@ -27,15 +27,15 @@ function Payment() {
       const getClientSecret= async()=>{
          const response = await axios({
            method: 'post',
-           url: `/payment/create?total=${getCartTotal(cart)* 100}`
+           url: `/payment/create?total=${getCartTotal(cart)* 100}`,
          });
          SetClientSecret(response.data.clientSecret)
       }
       getClientSecret();
     },[cart]);
 
-    console.log('client secret:',clientSecret)
-
+    console.log('client secret:',clientSecret);
+    console.log("User", user);
     const handleSubmit= async (event)=>{
       event.preventDefault();
       setProcessing(true);
