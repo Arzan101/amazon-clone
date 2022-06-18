@@ -1,53 +1,56 @@
-import { Card } from '@mui/material';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from 'axios';
-import {db} from "./firebase"
-import React, { useEffect, useState } from 'react'
-import CurrencyFormat from 'react-currency-format';
-import { useHistory } from 'react-router-dom';
-import CheckoutProduct from './Checkoutproduct';
-import "./Payment.css"
-import { getCartTotal } from './reducer';
-import { useStateValue } from './StateProvider';
+import React, { useState, useEffect } from "react";
+import "./Payment.css";
+import { useStateValue } from "./StateProvider";
+import CheckoutProduct from "./Checkoutproduct";
+import { Link, useHistory } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import CurrencyFormat from "react-currency-format";
+import { getCartTotal } from "./reducer";
+import axios from "./axios";
+import { db } from "./firebase";
 
 function Payment() {
-    const [{cart,user},dispatch] = useStateValue();
+  const [{ cart, user }, dispatch] = useStateValue();
+  const history = useHistory();
 
-    const stripe= useStripe();
-    const elements = useElements();
-    const history = useHistory();
-    const [error,setError]= useState(null);
-    const[disabled, setDisabled]= useState(true);
-    const[processing, setProcessing]=useState("");
-    const [succeeded, setSucceeded] =useState(false);
-    const[clientSecret,SetClientSecret]=useState(true);
-     
+  const stripe = useStripe();
+  const elements = useElements();
 
-    useEffect(()=>{
-      //generate the special stripe secret which allows to charge a customer
-      const getClientSecret= async()=>{
-         const response = await axios({
-           method: 'post',
-           url: `/payment/create?total=${getCartTotal(cart)* 100}`,
-         });
-         SetClientSecret(response.data.clientSecret)
-      }
-      getClientSecret();
-    },[cart]);
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
 
-    console.log('THE SECRET IS:', clientSecret);
-    console.log("User", user);
+  useEffect(() => {
+    // generate the special stripe secret which allows us to charge a customer
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        // Stripe expects the total in a currencies subunits in Paise
+        url: `/payments/create?total=${getCartTotal(cart) * 100}`,
+      });
+      setClientSecret(response.data.clientSecret);
+    };
 
-    const handleSubmit= async (event)=>{
-      event.preventDefault();
-      setProcessing(true);
-      
-      const payload = await stripe.confirmCardPayment(clientSecret,{
-        payment_method:{
+    getClientSecret();
+  }, [cart]);
+
+  console.log("THE SECRET IS >>>", clientSecret);
+  console.log("User", user);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
           card: elements.getElement(CardElement),
         },
-      }).then( ({paymentIntent}) =>{
-        //paymentIntent = payment confirmation
+      })
+      .then(({ paymentIntent }) => {
+        // paymentIntent = payment confirmation
 
         db.collection("users")
           .doc(user?.uid)
@@ -61,99 +64,90 @@ function Payment() {
 
         setSucceeded(true);
         setError(null);
-        setProcessing(false)
+        setProcessing(false);
 
-        dispatch(
-          {
-            type: 'EMPTY_CART',
-          }
-        )
+        dispatch({
+          type: "EMPTY_CART",
+        });
 
-        history.replace('/orders')
-      })
-    };
+        history.replace("/orders");
+      });
+  };
 
-    const handleChange =(event)=>{
-      setDisabled(event.empty);
-      setError(event.error ? event.error.message :"");
-    }
-
+  const handleChange = (event) => {
+    // Listen for changes in the CardElement
+    // and display any errors as the customer types their card details
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
+  };
 
   return (
-    <div className='payment'>
-       <div className='payment--container'>
-       {/*delivery address*/}
-         <div className='payment--section'>
-          <div className='payment--title'>
-          <h3>Delivery Address:</h3>
-          </div>
-          <div className='payment--address'>
-            <p>{user?.email} </p>
-            <p>flat 302, Hiranandani</p>
-            <p>Powai,india</p>
-          </div>
-
-         </div>
-           {/*cart review*/}
-         <div className='payment--section'>
-           <div className='payment--title'>
-           <h3>Review your item in Cart :</h3>
-           </div>  
-            <div className='payment--items'>
-            {cart.map( item => (
-                <CheckoutProduct
-                 id = {item.id}
-                 title = {item.title}
-                 image = {item.image}
-                 price = {item.price}
-                /> 
-               ))}
+        <div className="payment">
+          <div className="payment--container">
+            {/* Delivery Address */}
+            <div className="payment--section">
+              <div className="payment--title">
+                <h3>Delivery Address:</h3>
+              </div>
+              <div className="payment--address">
+                <p>{user?.email}</p>
+                <p>Falt No.301, Hiranandani</p>
+                <p>Andheri, India</p>
+              </div>
             </div>
-
-         </div>
-           {/*Payment gateway*/}
-         <div className='payment--section'>
-          <h3>Payment Method :</h3>
-           <div className='payment--details'>
-            {/*Stripe secret code*/}
-            <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange}/>
-               <div className='payment--priceContainer'>
-               <CurrencyFormat 
-               renderText = {(value) => (
-                <div>
-                      <p>Subtotal ({cart.length} items):<strong>{value}</strong> </p>
-                      <small className="subtotal--gift">
-                          <input type="checkbox" /> This order contains a gift
-                      </small>
-                </div>
-               )}
-               decimalScale = {2}
-               value = {getCartTotal(cart)}
-               displayType = {"text"}
-               thousandSeparator = {true}
-               prefix = {"₹"}
-            />     
-            <button disabled = {processing || disabled || succeeded}>
-             <span>{processing ? <p>processing</p>: "Buy now"}</span>
-            </button>
+            {/* Cart Review */}
+            <div className="payment--section">
+              <div className="payment--title">
+                <h3>Review Item in Cart:</h3>
+              </div>
+              <div className="payment--items"> 
+                {cart.map((item) => (
+                  <CheckoutProduct
+                    id={item.id}
+                    title={item.title}
+                    image={item.image}
+                    price={item.price}
+                  />
+                ))}
+              </div>
+            </div>
+            {/* Payment Gateway */}
+            <div className="payment--section">
+              <div className="payment--title">
+                <h3>Payment Method:</h3>
+              </div>
+              <div className="payment--details">
+                {/* Stripe Secret Code */}
+                <form onSubmit={handleSubmit}>
+                  <CardElement onChange={handleChange} />
+                  <div className="payment--priceContainer">
+                            <CurrencyFormat
+                              renderText={(value) => (
+                                <>
+                                  <p>
+                                    Subtotal ({cart.length} items):<strong>{value}</strong>{" "}
+                                  </p>
+                                  
+                                </>
+                              )}
+                              decimalScale={2}
+                              value={getCartTotal(cart)}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                              prefix={"₹"}
+                            />
+                            <button className="payment--button" disabled = {processing || disabled || succeeded}> 
+                                  <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                            </button>
+                  </div>
+                            {/* Errors */}
+                            {error && <div>{error}</div>}
+                </form>
+              </div>
+            </div>
           </div>
-               {/*error*/}
-               {error && <div>{error}</div>}
-
-               
-            
-            </form>
-           
-           </div>
-
-         </div>
-
-       </div>
-
-    </div>
-
-  )
-}
-
-export default Payment
+        </div>
+      );
+    }
+    
+    export default Payment;

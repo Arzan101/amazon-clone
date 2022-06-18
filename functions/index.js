@@ -1,38 +1,40 @@
+//Backend ...functions/index.js
 const functions = require("firebase-functions");
-const express = require("express"); // npm i express
-const cors = require("cors"); // npm i cors (cross origin resourse sharing)
-const stripe = require("stripe") ("sk_test_51KZRkQSHV4CwkIjNKPpmd6J4r35VaJmniTLGWsvYKgsrKoYKkvwC5C3NpGPA5aF7nO8sZA85WOBBqlcLGfutCRGr00HEVbaxAU");// -npm i stripe 
+const express = require("express");
+const cors = require("cors");
+const stripe = require("stripe")
+("sk_test_51KZRkQSHV4CwkIjNKPpmd6J4r35VaJmniTLGWsvYKgsrKoYKkvwC5C3NpGPA5aF7nO8sZA85WOBBqlcLGfutCRGr00HEVbaxAU");
 
-// -API
+// API
 
-
-// -App config //Setting up Express server
+// - App config
 const app = express();
 
 // - Middlewares
-app.use(cors({origin: true}));
+app.use(cors({ origin: true }));
 app.use(express.json());
-// - API Routes
-app.get("/", (request, response)=>response.status(200).send('hello world'));
 
-app.post("/payment/create",async(request, response) =>{
-   const total = request.query.total;
-   console.log("Total Rqeuest Total", total);
-   const paymentIntent = await stripe.paymentIntent.create({
-    amount : total, // -Paise wali value mai dega rupee mai nhi
-    currency:"inr",
-   });
+// - API routes
+app.get("/", (request, response) => response.status(200).send("hello world!!!"));
 
-   response.status(201).send({
-      clientSecret: paymentIntent.client_secret,
-   })
+app.post("/payments/create", async (request, response) => {
+  const total = request.query.total;
+
+  console.log("Payment Request:", total);
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total, // subunits of the currency
+    currency: "inr",
+  });
+
+  // OK - Created
+  response.status(201).send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 
-// -Listen Command
-
+// - Listen command
 exports.api = functions.https.onRequest(app);
-
-// - In terminal firebase emulators:start
-
-// -Endpoint
-// -http://localhost:5001/clone-a4bf9/us-central1/api
+// Example endpoint
+// E:\amazon-project-v2\amazon-clone\functions> firebase emulators:start
+// http://localhost:5001/project-50331/us-central1/api
