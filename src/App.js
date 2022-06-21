@@ -29,6 +29,7 @@ function App() {
             type: 'SET_USER',
             user: authUser
           })
+        
        } 
        else{
            dispatch(
