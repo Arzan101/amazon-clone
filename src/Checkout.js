@@ -12,12 +12,12 @@ function Checkout() {
   return (
     <div className="checkout">
       <div className="checkout--left">
-          <img className="checkout--adv" src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/Jupiter21P1/pay_stripe_desk.png" alt="adv" />
+          <img className="checkout--adv" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEcXAL5QVQ5r1NiayiIWgWdx_Mh5h8bVYcq6X8ao5YCo7HKjGhBhnKjshS5XGO4WXu4Ms&usqp=CAU" alt="adv" />
         <div>
             <h2>Welcome, {user?.email}</h2>
 
 
-          <h3 className="checkout--title">Your Shopping Details</h3>
+          <h3 className="checkout--title">Your Donation Details</h3>
           
           {cart.map( item => (
            <CheckoutProduct 

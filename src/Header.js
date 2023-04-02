@@ -21,7 +21,7 @@ function Header() {
 <div className= 'header'>
 
         <Link to ="/">
-         <img className = "header__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Logo"/>   
+         <img className = "header__logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYL0eHkKhRJTHki453sM14aJ1_ktal8Lt4ag&usqp=CAU" alt="Logo"/>   
         </Link>
 
          <div className="header__search">
@@ -37,7 +37,7 @@ function Header() {
     <Link to = {!user && '/logIn'}>
      <div  onClick={handleAuthentication} className="header__option">
         <span className="header__optionlineOne">
-                 Hello {!user ? 'Guest' : user.email}
+                  {!user ? 'Guest' : user.email}
         </span>
         <span className="header__optionlineTwo" > {user ? 'Sign Out' : 'Sign In'}
         </span>
@@ -45,7 +45,7 @@ function Header() {
     </Link>
      <div className="header__option">
          <span className="header__optionlineOne">
-                Return 
+                Donation
          </span>
         <span className="header__optionlineTwo">
                  Order
@@ -55,10 +55,10 @@ function Header() {
 
      <div className="header__option">
          <span className="header__optionlineOne">
-                   Your
+                   Neareast
          </span>
         <span className="header__optionlineTwo">
-                   Prime
+                   NGO's
         </span>
 
      </div>
@@ -69,6 +69,16 @@ function Header() {
     <div className="header__optionBasket">
     <ShoppingCartIcon/>
     <span className="header__optionlineTwo header__Basketcount">{cart.length}</span>
+    
+    </div>
+    </Link>
+
+    <Link to ="/FirstPage">
+    <div className="Option!">
+    <span className="header__optionlineTwo">
+                   Select
+        </span>
+
     
     </div>
     </Link>

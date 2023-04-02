@@ -40,7 +40,7 @@ function Login() {
     return (
         <div className='login'>
         <Link to = "/">
-        <img className = "login__logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Logo"/>  
+        <img className = "login__logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYL0eHkKhRJTHki453sM14aJ1_ktal8Lt4ag&usqp=CAU" alt="Logo"/>  
         </Link>
         <div className='login__container'>
         <h1>Sign-In</h1>
@@ -52,9 +52,9 @@ function Login() {
         <button type='submit' onClick={signIn} className='login--signButton'>Sign In</button>
         </form>
         <p>
-        By creating an account or logging in, you agree to Amazon’s Conditions of Use and Privacy Policy.
+        By creating an account or logging in, you agree to Conditions of Use and Privacy Policy.
         </p>
-        <button type='submit' onClick={register} className='login--registerButton'>Create your Amazon Account</button>
+        <button type='submit' onClick={register} className='login--registerButton'>Create your Account</button>
         </div>    
         </div>
     )
