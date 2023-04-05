@@ -57,6 +57,12 @@ function App() {
             <Route path="/Firstpage">
             <FirstPage/>
           </Route>
+
+          <Route path="/Home">
+            <Header/>
+            <Home/>
+          </Route>
+
               <Route path="/Checkout">
                 <Header />
                 <Checkout />
@@ -68,8 +74,8 @@ function App() {
                 </Elements>
               </Route>
               <Route path="/">
-                <Header />
-                <Home />
+               
+                <FirstPage />
               </Route>   
           </Switch>
         </div>

@@ -60,7 +60,7 @@ import Order from "./Orders";
               </li>
               <li className="form-line form-line-column form-col-3" data-type="control_button" id="id_7">
                 <div id="cid_7" className="form-input-wide" data-layout="full">
-                <div data-align="center" class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField"><button id="input_2" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" onClick={Home}>Donate</button></div>
+                <div data-align="center" class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField"><button id="input_2" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" onClick={Login}>Donate</button></div>
                  
                 </div>
               </li>

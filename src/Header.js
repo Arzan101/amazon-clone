@@ -74,13 +74,6 @@ function Header() {
     </Link>
 
     <Link to ="/FirstPage">
-    <div className="Option!">
-    <span className="header__optionlineTwo">
-                   Select
-        </span>
-
-    
-    </div>
     </Link>
 
 </div>

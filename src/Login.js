@@ -15,7 +15,7 @@ function Login() {
             .signInWithEmailAndPassword(email,password)
             .then((auth) => {
                 if(auth){
-                history.push('/')
+                history.push('/Home')
                 }
             })
          .catch(error => alert(error.message))
@@ -27,7 +27,7 @@ function Login() {
         auth 
             .createUserWithEmailAndPassword(email,password)
             .then ((auth)=>{
-               history.push("./");
+               history.push("./Home");
             })
             .catch(error=>{
                alert(error.message)
